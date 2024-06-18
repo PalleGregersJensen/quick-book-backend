@@ -17,9 +17,11 @@ public class Room {
     private int id;
     private int roomNumber;
     private int numberOfBeds;
-    @JoinColumn(name="hotel_id_fk")
+
     @ManyToOne
+    @JoinColumn(name="hotel_id_fk")
     private Hotel hotel;
+
     private double price;
     private LocalDateTime created;
     private LocalDateTime updated;

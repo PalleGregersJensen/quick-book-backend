@@ -1,14 +1,14 @@
 package org.example.quickbookbackend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -23,6 +23,11 @@ public class Hotel {
     private String city;
     private String country;
     private int zipCode;
+
+    @OneToMany(mappedBy = "hotel")
+    @JsonBackReference
+    private List<Room> rooms;
+
     private LocalDateTime created;
     private LocalDateTime updated;
 }
