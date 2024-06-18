@@ -17,6 +17,7 @@ public class HotelDto {
     private int id;
     private String name;
     private String city;
+    private String street;
     private String country;
     private int zipCode;
     private int numberOfRooms;
@@ -27,6 +28,7 @@ public class HotelDto {
         this.id = h.getId();
         this.name = h.getName();
         this.city = h.getCity();
+        this.street = h.getStreet();
         this.country = h.getCountry();
         this.zipCode = h.getZipCode();
         this.numberOfRooms = h.getRooms().size();

@@ -26,5 +26,10 @@ public class HotelService {
         return hotelDtoList;
     }
 
+    public void deleteHotel(int id) {
+        hotelRepository.deleteById(id);
+    }
+
+
 
 }
