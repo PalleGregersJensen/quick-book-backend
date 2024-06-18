@@ -28,4 +28,10 @@ public class HotelController {
         hotelService.deleteHotel(id);
         return "Hotel with ID: " + id + " has been deleted";
     }
+
+    //Update hotel by id
+    @PutMapping("/{id}")
+    public Hotel updateHotel (@PathVariable int id, @RequestBody Hotel hotel) {
+        return hotelService.updateHotel(id, hotel);
+    }
 }
