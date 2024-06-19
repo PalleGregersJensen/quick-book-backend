@@ -1,11 +1,15 @@
 package org.example.quickbookbackend.service;
 
+import org.aspectj.weaver.NewConstructorTypeMunger;
 import org.example.quickbookbackend.dto.HotelDto;
 import org.example.quickbookbackend.entity.Hotel;
 import org.example.quickbookbackend.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,17 @@ public class HotelService {
         return hotelDtoList;
     }
 
+    //Get hotel by id
+    public HotelDto getHotelById(int id) {
+        Optional<Hotel> hotel = hotelRepository.findById(id);
+        if (hotel.isPresent()) {
+            return new HotelDto(hotel.get());
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Hotel not found");
+        }
+    }
+
+
     //Delete hotel by ID
     public void deleteHotel(int id) {
         hotelRepository.deleteById(id);
@@ -50,10 +65,10 @@ public class HotelService {
             existingHotel.setStreet(updatedHotel.getStreet());
             existingHotel.setZipCode(updatedHotel.getZipCode());
 
-            // Save updated news in database
+            // Save updated hotel in database
             return hotelRepository.save(existingHotel);
         } else {
-            // If news does not exist in database, throw error
+            // If hotel does not exist in database, throw error
             throw new RuntimeException("Hotel with ID: " + id + " not found");
         }
     }

@@ -22,6 +22,12 @@ public class HotelController {
         return hotelService.getAllHotels();
     }
 
+    //Get hotel by id
+    @GetMapping("{id}")
+    public HotelDto getHotelByID(@PathVariable int id) {
+        return hotelService.getHotelById(id);
+    }
+
     //Delete hotel by id
     @DeleteMapping("/{id}")
     public String deleteHotel(@PathVariable int id) {
