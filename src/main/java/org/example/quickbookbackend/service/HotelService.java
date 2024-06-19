@@ -7,6 +7,7 @@ import org.example.quickbookbackend.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.awt.*;
@@ -43,6 +44,11 @@ public class HotelService {
         }
     }
 
+    //Create new hotel
+    public Hotel createNewHotel(Hotel hotel) {
+        hotel.setCreated(LocalDateTime.now());
+        return hotelRepository.save(hotel);
+    }
 
     //Delete hotel by ID
     public void deleteHotel(int id) {
@@ -72,5 +78,6 @@ public class HotelService {
             throw new RuntimeException("Hotel with ID: " + id + " not found");
         }
     }
+
 
 }

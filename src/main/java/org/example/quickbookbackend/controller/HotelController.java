@@ -1,5 +1,6 @@
 package org.example.quickbookbackend.controller;
 
+import jakarta.annotation.PostConstruct;
 import org.example.quickbookbackend.dto.HotelDto;
 import org.example.quickbookbackend.entity.Hotel;
 import org.example.quickbookbackend.service.HotelService;
@@ -33,6 +34,12 @@ public class HotelController {
     public String deleteHotel(@PathVariable int id) {
         hotelService.deleteHotel(id);
         return "Hotel with ID: " + id + " has been deleted";
+    }
+
+    //Post hotel to database
+    @PostMapping
+    public Hotel createHotel(@RequestBody Hotel hotel) {
+        return hotelService.createNewHotel(hotel);
     }
 
     //Update hotel by id
