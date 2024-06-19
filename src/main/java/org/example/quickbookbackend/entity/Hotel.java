@@ -1,7 +1,6 @@
 package org.example.quickbookbackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,7 @@ public class Hotel {
     private String country;
     private int zipCode;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
     @JsonBackReference
     private List<Room> rooms;
 
